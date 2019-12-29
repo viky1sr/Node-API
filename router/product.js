@@ -1,24 +1,23 @@
 const express = require("express");
+const {
+    getProducts,
+    getProduct,
+    createProduct,
+    deleteProduct,
+    updateProduct
+} = require("../controller/productController");
+
 const router = express.Router();
 
-// module.exports = router => {
+router
+    .route('/')
+    .get(getProducts)
+    .post(createProduct);
 
-    router.get('/', (req, res) => {
-        res.status(200).json({success: true, msg: 'Show all database'})
-    });
-
-    router.post('/', (req, res) => {
-        res.status(200).json({success: true, msg: 'Show all database'})
-    });
-
-    router.put('/:id', (req, res) => {
-        res.status(200).json({success: true, msg: `Show data bases on id ${req.params.id}`})
-    });
-
-    router.delete('/:id', (req, res) => {
-        res.status(200).json({success: true, msg: `Delete data bases on id ${req.params.id}`})
-    });
-
-// };
+router
+    .route('/:id')
+    .get(getProduct)
+    .put(updateProduct)
+    .delete(deleteProduct);
 
 module.exports = router;
